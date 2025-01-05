@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>[ kiking ] Collection of SINoAlice </title>
             <meta property = "og:image"
-                content="media/background_library_blur.png" />
+                content="./media/background_library_blur.png" />
         <!-- Bootstrap 3-->
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
@@ -42,7 +42,7 @@
             function createThumbnail(video_id) {
               var t = $("#thumbnail_template").clone()
               t.removeAttr("id");
-              t.find("img").attr("src", "../media/" + video_id + ".jpg");
+              t.find("img").attr("src", "./media/" + video_id + ".jpg");
               t.find("img").attr("onclick", "displayVideo('" + video_id + ".mp4');");
               t.show();
               return t;
@@ -50,7 +50,7 @@
 
             function displayThumbnails(tabcontainer, character_name){
               var container = tabcontainer.find(".row[name='thumbnails_container']");
-              $.get("media/character_list/" + character_name + ".txt", function(txt){
+              $.get("./media/character_list/" + character_name + ".txt", function(txt){
                 var lines = txt.split("\n");
                 for (var i = 0; i < lines.length; i++) {
                     if (lines[i]) {
@@ -66,7 +66,7 @@
               var container = $("#video_display");
               var t = $("#video_display_template").clone()
               t.removeAttr("id");
-              t.find("source").attr("src", "../media/" + video_id);
+              t.find("source").attr("src", "./media/" + video_id);
               t.show();
               container.html(t);
             }
@@ -78,7 +78,7 @@
                 var t = $("#icon_template").clone()
                 t.removeAttr("id");
                 t.attr("id", CHARACTERS[i] + "-icon");
-                t.find("img").attr("src", "../media/charactor_icons/" + CHARACTERS[i] + ".jpg");
+                t.find("img").attr("src", "./media/charactor_icons/" + CHARACTERS[i] + ".jpg");
                 t.find("img").attr("onclick", "openTab('" + CHARACTERS[i] + "');");
                 t.find("img").attr("title", CHARACTERS[i]);
                 t.show();
@@ -137,7 +137,7 @@
                 createIcons();
                 createTabContent();
                 openTab("characters_all");
-                $.get("media/character_list/my_favourites.txt", function(txt){
+                $.get("./media/character_list/my_favourites.txt", function(txt){
                   var lines = txt.split("\n");
                   var i = Math.floor(Math.random() * lines.length);
                   displayVideo(lines[i] + ".mp4");
