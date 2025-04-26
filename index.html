@@ -51,13 +51,17 @@
             function displayThumbnails(tabcontainer, character_name){
               var container = tabcontainer.find(".row[name='thumbnails_container']");
               $.get("./media/character_list/" + character_name + ".txt", function(txt){
-                var lines = txt.split("\n");
+                var lines = txt.split("\n").filter(line => line.trim() !== '');
+                var row_div = $('<div>', { class: 'row' });
                 for (var i = 0; i < lines.length; i++) {
-                    if (lines[i]) {
-                      var t = createThumbnail(lines[i]);
-                      container.append(t);
+                    var t = createThumbnail(lines[i]);
+                    row_div.append(t);
+                    if (!((i+1) % 4)) {
+                      container.append(row_div);
+                      row_div = $('<div>', { class: 'row' });
                     }
                 }
+                container.append(row_div);
               });
 
             }
